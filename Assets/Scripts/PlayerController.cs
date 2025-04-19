@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Target _targetType = Target.None;
 
     [SerializeField] ParticleSystem deathParticle;
-    [SerializeField] FieldOfView_Script fieldOfView;
+    //[SerializeField] FieldOfView_Script fieldOfView;
 
     Canvas_Script _canvas;
     GameManager _gameManager;
@@ -90,8 +90,8 @@ public class PlayerController : MonoBehaviour
             _spriteRenderer.flipX = direction.x < 0;
 
             // 플레이어 위치, 각도와 Field of View 위치, 각도 동기화
-            fieldOfView.SetAimDirection(UtilsClass.GetVectorFromAngle(angle + 90));
-            fieldOfView.SetOrigin(this.transform.position);
+            //fieldOfView.SetAimDirection(UtilsClass.GetVectorFromAngle(angle + 90));
+            //fieldOfView.SetOrigin(this.transform.position);
 
             // 플레이어 체력이 적으면 UI표시
             if (hp == 1)
