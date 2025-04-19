@@ -7491,7 +7491,7 @@ TextureImporter:
       name: PeopleUI_305
       rect:
         serializedVersion: 2
-        x: 544
+        x: 545
         y: 96
         width: 16
         height: 16
@@ -7513,9 +7513,9 @@ TextureImporter:
       name: PeopleUI_306
       rect:
         serializedVersion: 2
-        x: 560
+        x: 561
         y: 96
-        width: 16
+        width: 15
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -9735,7 +9735,7 @@ TextureImporter:
       name: PeopleUI_407
       rect:
         serializedVersion: 2
-        x: 544
+        x: 432
         y: 32
         width: 16
         height: 16
@@ -9757,7 +9757,7 @@ TextureImporter:
       name: PeopleUI_408
       rect:
         serializedVersion: 2
-        x: 560
+        x: 448
         y: 32
         width: 16
         height: 16
@@ -9779,7 +9779,7 @@ TextureImporter:
       name: PeopleUI_409
       rect:
         serializedVersion: 2
-        x: 576
+        x: 464
         y: 32
         width: 16
         height: 16
@@ -9801,7 +9801,7 @@ TextureImporter:
       name: PeopleUI_410
       rect:
         serializedVersion: 2
-        x: 592
+        x: 544
         y: 32
         width: 16
         height: 16
@@ -9823,7 +9823,7 @@ TextureImporter:
       name: PeopleUI_411
       rect:
         serializedVersion: 2
-        x: 608
+        x: 560
         y: 32
         width: 16
         height: 16
@@ -9845,8 +9845,8 @@ TextureImporter:
       name: PeopleUI_412
       rect:
         serializedVersion: 2
-        x: 160
-        y: 16
+        x: 576
+        y: 32
         width: 16
         height: 16
       alignment: 0
@@ -9867,8 +9867,8 @@ TextureImporter:
       name: PeopleUI_413
       rect:
         serializedVersion: 2
-        x: 176
-        y: 16
+        x: 592
+        y: 32
         width: 16
         height: 16
       alignment: 0
@@ -9889,8 +9889,8 @@ TextureImporter:
       name: PeopleUI_414
       rect:
         serializedVersion: 2
-        x: 192
-        y: 16
+        x: 608
+        y: 32
         width: 16
         height: 16
       alignment: 0
@@ -9911,7 +9911,7 @@ TextureImporter:
       name: PeopleUI_415
       rect:
         serializedVersion: 2
-        x: 208
+        x: 160
         y: 16
         width: 16
         height: 16
@@ -9933,7 +9933,7 @@ TextureImporter:
       name: PeopleUI_416
       rect:
         serializedVersion: 2
-        x: 224
+        x: 176
         y: 16
         width: 16
         height: 16
@@ -9955,7 +9955,7 @@ TextureImporter:
       name: PeopleUI_417
       rect:
         serializedVersion: 2
-        x: 240
+        x: 192
         y: 16
         width: 16
         height: 16
@@ -9977,7 +9977,7 @@ TextureImporter:
       name: PeopleUI_418
       rect:
         serializedVersion: 2
-        x: 256
+        x: 208
         y: 16
         width: 16
         height: 16
@@ -9999,7 +9999,7 @@ TextureImporter:
       name: PeopleUI_419
       rect:
         serializedVersion: 2
-        x: 272
+        x: 224
         y: 16
         width: 16
         height: 16
@@ -10021,7 +10021,7 @@ TextureImporter:
       name: PeopleUI_420
       rect:
         serializedVersion: 2
-        x: 288
+        x: 240
         y: 16
         width: 16
         height: 16
@@ -10043,7 +10043,7 @@ TextureImporter:
       name: PeopleUI_421
       rect:
         serializedVersion: 2
-        x: 304
+        x: 256
         y: 16
         width: 16
         height: 16
@@ -10065,7 +10065,7 @@ TextureImporter:
       name: PeopleUI_422
       rect:
         serializedVersion: 2
-        x: 592
+        x: 272
         y: 16
         width: 16
         height: 16
@@ -10087,7 +10087,7 @@ TextureImporter:
       name: PeopleUI_423
       rect:
         serializedVersion: 2
-        x: 608
+        x: 288
         y: 16
         width: 16
         height: 16
@@ -10101,6 +10101,138 @@ TextureImporter:
       bones: []
       spriteID: af29afc7b5c5ada499c9bfbe47837c6d
       internalID: 604702385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PeopleUI_424
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3105d66243845254a90cb2cd5610b307
+      internalID: 1072687292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PeopleUI_425
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19df8f2f814f0eb44bc42a6a63be245e
+      internalID: -1852220665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PeopleUI_426
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61058eef27aba384ab3e23a6c0d9e27b
+      internalID: -1634127358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PeopleUI_427
+      rect:
+        serializedVersion: 2
+        x: 464
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ee17291e609dd345a9775400cdfa643
+      internalID: -471069660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PeopleUI_428
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ccb6ad6846891574e90dce6ba486642d
+      internalID: -1894093372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PeopleUI_429
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cba7cd6da3e76ea438c41b9188c945b5
+      internalID: -634258799
       vertices: []
       indices: 
       edges: []
@@ -10481,6 +10613,12 @@ TextureImporter:
       PeopleUI_421: 478272795
       PeopleUI_422: -2025675671
       PeopleUI_423: 604702385
+      PeopleUI_424: 1072687292
+      PeopleUI_425: -1852220665
+      PeopleUI_426: -1634127358
+      PeopleUI_427: -471069660
+      PeopleUI_428: -1894093372
+      PeopleUI_429: -634258799
       PeopleUI_43: 2727543661780093237
       PeopleUI_44: -4659053179835857248
       PeopleUI_45: 3525928830718001086
