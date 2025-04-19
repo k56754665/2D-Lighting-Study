@@ -1,6 +1,6 @@
 using UnityEngine;
-using CodeMonkey.Utils;
 using Define;
+using System;
 
 public class PlayerController : MonoBehaviour
 {
@@ -27,7 +27,8 @@ public class PlayerController : MonoBehaviour
     public Target TargetType { get { return _targetType; } set { _targetType = value; } }
     public GameObject CurrentTarget { get { return _target; } set { _target = value; } }
     public float RunMultiply => runMultiply;
-      
+
+    public Action<int> OnHpDownEvent;
 
     void Start()
     {
@@ -209,6 +210,7 @@ public class PlayerController : MonoBehaviour
                 _collision.gameObject.SetActive(false);
                 Destroy(_collision.gameObject);
                 hp -= 1;
+                OnHpDownEvent?.Invoke(hp);
                 Instantiate(deathParticle, transform.position, transform.rotation);
             }
         }
