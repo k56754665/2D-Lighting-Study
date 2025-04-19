@@ -1,7 +1,6 @@
 using Define;
 using UnityEngine;
 using System.Collections;
-using NUnit.Framework.Constraints;
 using UnityEngine.Rendering.Universal;
 
 public class Closet : MonoBehaviour
@@ -23,12 +22,12 @@ public class Closet : MonoBehaviour
     {
         if (_isMoveInCloset) return; // 이미 옷장 안에 있는 경우
         _isMoveInCloset = true; // 옷장 안으로 이동 중
-        
 
         // 목표 위치 설정
         Vector2 targetPosition;
         if (!_playerInteraction.IsInCloset)
         {
+            _playerInteraction.OnClosetEnterEvent?.Invoke();
             _playerController.CurrentState = PlayerState.Interaction;
             _playerController.GetComponent<CircleCollider2D>().enabled = false;
             _playerFire.CanFire = false;
@@ -38,6 +37,7 @@ public class Closet : MonoBehaviour
         }
         else
         {
+            _playerInteraction.OnClosetExitEvent?.Invoke();
             targetPosition = transform.position + transform.up * 3f;
             _playerInteraction.IsInCloset = false;
         }

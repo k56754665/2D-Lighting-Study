@@ -30,7 +30,7 @@ public class EnemyDropItem : MonoBehaviour
         }
         else if (itemType == GunType.SmokeBomb)
         {
-            _dropItem = Resources.Load<GameObject>("Prefabs/KGJ/SmokeBomb");
+            _dropItem = Resources.Load<GameObject>("Prefabs/KGJ/ItemSmokeBomb");
         }
         Instantiate(_dropItem, transform.position, Quaternion.identity);
     }

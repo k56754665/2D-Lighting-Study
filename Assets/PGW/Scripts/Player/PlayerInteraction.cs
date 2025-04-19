@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using Define;
+using System;
 
 public class PlayerInteraction : MonoBehaviour
 {
@@ -19,6 +20,9 @@ public class PlayerInteraction : MonoBehaviour
     //오브젝트 상호작용
     [SerializeField] bool _isInCloset = false; // 플레이어가 옷장 안에 있는지 여부
     public bool IsInCloset { get { return _isInCloset; } set { _isInCloset = value; } }
+
+    public Action OnClosetEnterEvent;
+    public Action OnClosetExitEvent;
 
     void Start()
     {
