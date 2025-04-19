@@ -1,6 +1,6 @@
 using UnityEngine;
-using CodeMonkey.Utils;
 using Define;
+using System;
 
 public class PlayerController : MonoBehaviour
 {
@@ -8,7 +8,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Target _targetType = Target.None;
 
     [SerializeField] ParticleSystem deathParticle;
-    //[SerializeField] FieldOfView_Script fieldOfView;
 
     Canvas_Script _canvas;
     GameManager _gameManager;
@@ -27,7 +26,8 @@ public class PlayerController : MonoBehaviour
     public Target TargetType { get { return _targetType; } set { _targetType = value; } }
     public GameObject CurrentTarget { get { return _target; } set { _target = value; } }
     public float RunMultiply => runMultiply;
-      
+
+    public Action<int> OnHpDownEvent;
 
     void Start()
     {
