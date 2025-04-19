@@ -24,8 +24,8 @@ public class WeakWall : MonoBehaviour
         _hp--;
         if (_hp <= 0)
         {
-            UpdateNavMesh();
             Destroy(gameObject);
+            UpdateNavMesh();
         }
     }
 
