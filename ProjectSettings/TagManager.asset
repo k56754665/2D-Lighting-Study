@@ -10,6 +10,8 @@ TagManager:
   - GunAmmo
   - Patient
   - Object
+  - Emergency Kit
+  - WeakWall
   layers:
   - Default
   - TransparentFX

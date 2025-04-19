@@ -62,9 +62,13 @@ public class Bullet : MonoBehaviour
             {
                 hit.collider.gameObject.GetComponent<Enemy>().TakeDamage(this);
             }
-            else if(hit.collider.CompareTag("Player"))
+            else if (hit.collider.CompareTag("Player"))
             {
                 hit.collider.gameObject.GetComponent<PlayerController>().TakeDamage(this);
+            }
+            else if (hit.collider.CompareTag("WeakWall"))
+            { 
+                hit.collider.gameObject.GetComponent<WeakWall>().TakeDamage(this);
             }
         }
     }

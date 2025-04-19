@@ -207,7 +207,7 @@ GameObject:
   - component: {fileID: 3556713807619247309}
   m_Layer: 0
   m_Name: Glass
-  m_TagString: Untagged
+  m_TagString: WeakWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -358,3 +358,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hp: 1
+  navMeshSurface: {fileID: 0}
