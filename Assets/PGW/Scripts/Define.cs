@@ -33,4 +33,11 @@ namespace Define
         Can,
         SmokeBomb
     }
+
+    public enum BulletColor
+    {
+        Yellow,
+        Blue,
+        Red
+    }
 }
