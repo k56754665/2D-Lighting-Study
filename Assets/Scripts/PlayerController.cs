@@ -197,16 +197,23 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage(Bullet bullet)
     {
-
         if (bullet.BulletColor == BulletColor.Yellow)
         {
+
             Debug.Log("bullet");
-            bullet.gameObject.SetActive(false);
             Destroy(bullet.gameObject);
             hp -= 1;
+            OnHpDownEvent?.Invoke(hp);
             Instantiate(deathParticle, transform.position, transform.rotation);
         }
-    } 
+    }
+    public void TakeBombDamage()
+    {
+        hp -= 3;
+        OnHpDownEvent?.Invoke(2);
+        OnHpDownEvent?.Invoke(1);
+        OnHpDownEvent?.Invoke(0);
+    }
 
     private void OnTriggerEnter2D(Collider2D _collision)
     {

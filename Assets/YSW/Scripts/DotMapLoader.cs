@@ -1,18 +1,17 @@
 using UnityEngine;
 
-public class DotMapLoader : MonoBehaviour
+public class SimpleWallMapLoader : MonoBehaviour
 {
-    public Texture2D mapImage;  // 도트 이미지
-    public GameObject wallPrefab;
-    public GameObject enemyPrefab;
-    public float tileSize = 1f;  // 1타일당 간격
+    public Texture2D mapImage;        // 도트 이미지
+    public GameObject wallPrefab;     // 벽 프리팹
+    public float tileSize = 1f;       // 타일 크기 (픽셀당 간격)
 
     void Start()
     {
-        LoadMapFromImage();
+        LoadWallsFromImage();
     }
 
-    void LoadMapFromImage()
+    void LoadWallsFromImage()
     {
         for (int y = 0; y < mapImage.height; y++)
         {
@@ -20,23 +19,21 @@ public class DotMapLoader : MonoBehaviour
             {
                 Color pixelColor = mapImage.GetPixel(x, y);
 
-                Vector3 spawnPos = new Vector3(x * tileSize, y * tileSize, 0);
-
                 if (IsGray(pixelColor))
                 {
+                    Vector3 spawnPos = new Vector3(x * tileSize, y * tileSize, 0);
                     Instantiate(wallPrefab, spawnPos, Quaternion.identity);
-                }
-                else if (IsRed(pixelColor))
-                {
-                    Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
                 }
             }
         }
     }
 
-    bool IsGray(Color c) =>
-        Mathf.Abs(c.r - c.g) < 0.1f && Mathf.Abs(c.g - c.b) < 0.1f && c.r < 0.9f;
-
-    bool IsRed(Color c) =>
-        c.r > 0.9f && c.g < 0.2f && c.b < 0.2f;
+    // 회색 계열 픽셀 필터 (R ≈ G ≈ B)
+    bool IsGray(Color color)
+    {
+        float threshold = 0.1f;
+        return Mathf.Abs(color.r - color.g) < threshold &&
+               Mathf.Abs(color.g - color.b) < threshold &&
+               color.r > 0.5f && color.r < 0.8f; // 회색 톤 범위
+    }
 }
