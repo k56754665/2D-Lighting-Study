@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: -83500462, guid: f7b42dd3e0825784bacaa5edfbf9dc6d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -104,6 +104,8 @@ MonoBehaviour:
   explosionRadius: 5
   damage: 10
   explosionEffect: {fileID: 7366266052438829988, guid: 8406427295923ef4389b66abb4a74b7b, type: 3}
+  showExplosionRange: 1
+  rangeColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!58 &3371302789991432663
 CircleCollider2D:
   m_ObjectHideFlags: 0
