@@ -121,8 +121,16 @@ public class PlayerFire : MonoBehaviour
 
         if (currentGunType == GunType.Can)
         {
-            _canObject = Instantiate(_can, transform.position + (-transform.up * 2f), transform.rotation);
-            _canObject.GetComponent<Can>().Throw();
+            
+            Vector3 mouseWorldPos = InputManager.Instance.PointerMoveInput;
+            mouseWorldPos.z = 0f; // 2D에서는 z 고정
+
+            Vector3 direction = (mouseWorldPos - transform.position).normalized;
+            Vector3 spawnPos = transform.position + direction * 2f;
+
+            _canObject = Instantiate(_can, spawnPos, Quaternion.identity);
+
+            _canObject.GetComponent<Can>().Throw(direction);
             _canvas.HideCanImage();
             currentGunType = GunType.BlueGun;
             _canvas.TurnOff(_canvas.redGunUI);

@@ -21,13 +21,13 @@ public class Can : MonoBehaviour
         _soundWavePrefab = Resources.Load<GameObject>("Prefabs/Soundwaves/SoundwaveRun");
     }
 
-    public void Throw()
+    public void Throw(Vector3 dir)
     {
         _isThrowing = true;
         if (_throwingCoroutine == null)
             _throwingCoroutine = StartCoroutine(Throwing());
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        rb.AddForce(-transform.up * 20f, ForceMode2D.Impulse);
+        rb.AddForce(dir * 20f, ForceMode2D.Impulse);
         rb.AddTorque(5f, ForceMode2D.Impulse);
     }
 
