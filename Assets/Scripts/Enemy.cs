@@ -84,9 +84,9 @@ public class Enemy : MonoBehaviour
 
     Canvas _pressE_UI;
 
+    // 이미지를 표시해주는 자식 오브젝트
+    Transform _spriteTransform;
     Animator _animator;
-
-    Rigidbody2D _rigidbody;
     SpriteRenderer _spriteRenderer;
 
     public Vector3 SoundwavePosition
@@ -101,9 +101,10 @@ public class Enemy : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
         agentRotate = GetComponent<AgentRotateSmooth2d>();
         agent = GetComponent<NavMeshAgent>();
-        _animator = GetComponent<Animator>();
-        _rigidbody = GetComponent<Rigidbody2D>();
-        _spriteRenderer = GetComponent<SpriteRenderer>();
+
+        _animator = GetComponentInChildren<Animator>();
+        _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        _spriteTransform = _spriteRenderer.transform;
     }
 
     private void Start()
@@ -133,6 +134,8 @@ public class Enemy : MonoBehaviour
             StopAllCoroutines();
             return;
         }
+
+        _spriteTransform.eulerAngles = new Vector3(0, 0, 0);
 
         // 적 대사 변경
         enemyDialogue.DialogueTalking(currentState);
@@ -258,6 +261,8 @@ public class Enemy : MonoBehaviour
     void ChangeSpeed(float _linearSpeed, float _angularSpeed)
     {
         agent.speed = _linearSpeed;
+        agentRotate.SetSmoothAngularSpeed(_angularSpeed);
+
 
         // 에이전트의 이동 방향 가져오기
         Vector2 moveDirection = agent.velocity;
@@ -268,16 +273,11 @@ public class Enemy : MonoBehaviour
             // 2D 방향 벡터 정규화
             Vector2 direction2D = moveDirection.normalized;
 
-            // 회전 각도 계산
-            float angle = Mathf.Atan2(direction2D.y, direction2D.x) * Mathf.Rad2Deg;
-
-            // 에이전트의 회전 설정 (Z축 회전)
-            _fovTransform.rotation = Quaternion.Euler(0, 0, angle - 90); // -90은 스프라이트 방향에 따라 조정
-
             // 스프라이트 좌우 반전 (기존 로직 유지, 필요 시 조정)
             _spriteRenderer.flipX = direction2D.x <= 0;
         }
     }
+
 
     /// <summary>
     /// 적의 시야각을 체크하여 플레이어를 발견했는지 확인
@@ -314,7 +314,7 @@ public class Enemy : MonoBehaviour
                     // Field of View Object에 가로막힘
                     //Debug.Log("Field of View Object에 의해 가로막힘");
                     // 장애물과의 거리로 Ray 길이 조정
-                    //Debug.DrawRay(origin, UtilsClass.GetVectorFromAngle(angle) * hit.distance, UnityEngine.Color.red);
+                    Debug.DrawRay(origin, UtilsClass.GetVectorFromAngle(angle) * hit.distance, UnityEngine.Color.red);
                 }
             }
         }
@@ -559,8 +559,6 @@ public class Enemy : MonoBehaviour
 
         _longFovLight.TurnOff();
         _shortFovLight.TurnOff();
-        //FoVEnemy_Wide.FoVTurnOnOff(false);
-        //FoVEnemy_Long.FoVTurnOnOff(false);
 
         Invoke("RecoverFromStun", stunDuration); // 일정 시간 후 Stun 해제
     }

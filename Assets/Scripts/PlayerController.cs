@@ -8,7 +8,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Target _targetType = Target.None;
 
     [SerializeField] ParticleSystem deathParticle;
-    //[SerializeField] FieldOfView_Script fieldOfView;
 
     Canvas_Script _canvas;
     GameManager _gameManager;
