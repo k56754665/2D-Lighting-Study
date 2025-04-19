@@ -93,6 +93,9 @@ public class Enemy : MonoBehaviour
     // 적 처치 시 아이템 드랍
     EnemyDropItem _enemyDropItem;
 
+    // 적 피격 시 핏자국 생성
+    GameObject _bloodSprite;
+
     public Vector3 SoundwavePosition
     {
         get { return _soundwavePosition; }
@@ -114,6 +117,7 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         _enemyDropItem = GetComponent<EnemyDropItem>();
+        _bloodSprite = Resources.Load<GameObject>("Prefabs/KGJ/Blood");
 
         // 적 암살 E UI 시작시 비활성화
         _pressE_UI = transform.GetChild(0).GetComponent<Canvas>();
@@ -253,6 +257,7 @@ public class Enemy : MonoBehaviour
     /// </summary>
     public void DamagedBullet(string _color)
     {
+        MakeBlood();
         if (_color == "Blue")
         {
             hp -= 1;
@@ -263,6 +268,7 @@ public class Enemy : MonoBehaviour
             hp -= 4;
             Instantiate(RedDamagedParticle, _fovTransform.position, _fovTransform.rotation);
         }
+        
     }
 
     /// <summary>
@@ -609,9 +615,17 @@ public class Enemy : MonoBehaviour
         _shortFovLight.TurnOn();
     }
 
+    void MakeBlood()
+    {
+        Vector2 randomOffset = UnityEngine.Random.insideUnitCircle * 1f; // 1f 반경 원 안의 랜덤 위치
+        Vector3 spawnPosition = transform.position + new Vector3(randomOffset.x, randomOffset.y, 0);
+        Instantiate(_bloodSprite, spawnPosition, transform.rotation);
+    }
+
     public void EnemyDie()
     {
         Instantiate(RedDamagedParticle, transform.position, transform.rotation);
+        MakeBlood();
         _enemyDropItem.DropItem();
         gameObject.SetActive(false);
         EnemyManager.Instance.AddDeadEnemyStatus(this);
