@@ -987,6 +987,7 @@ GameObject:
   - component: {fileID: 886506546772045523}
   - component: {fileID: 2235226909004363510}
   - component: {fileID: 3793459446754320628}
+  - component: {fileID: 1007858666881000477}
   m_Layer: 0
   m_Name: Enemy_AIver
   m_TagString: Enemy
@@ -1173,6 +1174,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   angularSpeed: 100
+--- !u!114 &1007858666881000477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7511891896799569590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b6076c6da7712240bd8993b1e729707, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemType: 0
 --- !u!1 &8563791974904183793
 GameObject:
   m_ObjectHideFlags: 0
