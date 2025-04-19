@@ -188,51 +188,59 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D _collision)
+    public void TakeDamage(Bullet bullet)
     {
-        if (_collision.gameObject.CompareTag("Bullet"))
+        // 적이 순찰중일때는 파란총 -> 스턴, 빨간총 -> 주변살피기
+        if (currentState == EnemyState.Patrolling)
         {
-            Bullet bullet = _collision.gameObject.GetComponent<Bullet>();
+            if (bullet.BulletColor == BulletColor.Blue)
+            {
+                DamagedBullet("Blue");
+                bullet.gameObject.SetActive(false);
+                Destroy(bullet.gameObject);
+                Stun();
+            }
+            else if (bullet.BulletColor == BulletColor.Red)
+            {
+                DamagedBullet("Red");
+                bullet.gameObject.SetActive(false);
+                Destroy(bullet.gameObject);
+                StartSearching();
+            }
+        }
+        // 적이 주변을 살피거나 이미 쫓아갈 때는 두 총 -> 모두 쫓아가기
+        else if ((currentState == EnemyState.Chasing || currentState == EnemyState.Searching || currentState == EnemyState.Checking))
+        {
+            if (bullet.BulletColor == BulletColor.Blue)
+            {
+                DamagedBullet("Blue");
+                bullet.gameObject.SetActive(false);
+                Destroy(bullet.gameObject);
+                currentState = EnemyState.Chasing;
+            }
+            else if (bullet.BulletColor == BulletColor.Red)
+            {
+                DamagedBullet("Red");
+                bullet.gameObject.SetActive(false);
+                Destroy(bullet.gameObject);
+                currentState = EnemyState.Chasing;
+            }
+        }
+        // 적이 스턴중일때는 두 총 -> 데미지만
+        else if (currentState == EnemyState.Stunning)
+        {
+            if (bullet.BulletColor == BulletColor.Blue)
+            {
+                bullet.gameObject.SetActive(false);
+                Destroy(bullet.gameObject);
+                DamagedBullet("Blue");
 
-            // 적이 순찰중일때는 파란총 -> 스턴, 빨간총 -> 주변살피기
-            if (currentState == EnemyState.Patrolling)
-            {
-                if (bullet.bulletColor == Bullet.BulletColor.Blue)
-                {
-                    DamagedBullet("Blue");
-                    Stun();
-                }
-                else if (bullet.bulletColor == Bullet.BulletColor.Red)
-                {
-                    DamagedBullet("Red");
-                    StartSearching();
-                }
             }
-            // 적이 주변을 살피거나 이미 쫓아갈 때는 두 총 -> 모두 쫓아가기
-            else if ((currentState == EnemyState.Chasing || currentState == EnemyState.Searching || currentState == EnemyState.Checking))
+            else if (bullet.BulletColor == BulletColor.Red)
             {
-                if (bullet.bulletColor == Bullet.BulletColor.Blue)
-                {
-                    DamagedBullet("Blue");
-                    currentState = EnemyState.Chasing;
-                }
-                else if (bullet.bulletColor == Bullet.BulletColor.Red)
-                {
-                    DamagedBullet("Red");
-                    currentState = EnemyState.Chasing;
-                }
-            }
-            // 적이 스턴중일때는 두 총 -> 데미지만
-            else if (currentState == EnemyState.Stunning)
-            {
-                if (bullet.bulletColor == Bullet.BulletColor.Blue)
-                {
-                    DamagedBullet("Blue");
-                }
-                else if (bullet.bulletColor == Bullet.BulletColor.Red)
-                {
-                    DamagedBullet("Red");
-                }
+                bullet.gameObject.SetActive(false);
+                Destroy(bullet.gameObject);
+                DamagedBullet("Red");
             }
         }
     }

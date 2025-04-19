@@ -1,6 +1,8 @@
 using Define;
 using UnityEngine;
 using System.Collections;
+using NUnit.Framework.Constraints;
+using UnityEngine.Rendering.Universal;
 
 public class Closet : MonoBehaviour
 {
@@ -32,6 +34,7 @@ public class Closet : MonoBehaviour
             _playerFire.CanFire = false;
             targetPosition = transform.position;
             _playerInteraction.IsInCloset = true;
+            _playerController.GetComponentInChildren<Light2D>().enabled = false;
         }
         else
         {
@@ -65,6 +68,9 @@ public class Closet : MonoBehaviour
             _playerController.GetComponent<CircleCollider2D>().enabled = true;
             _playerFire.CanFire = true;
             _playerInteraction.IsInCloset = false;
+            _playerController.CurrentTarget = null;
+            _playerController.TargetType = Target.None;
+            _playerController.GetComponentInChildren<Light2D>().enabled = true;
         }
         else 
         {

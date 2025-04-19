@@ -195,25 +195,21 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void TakeDamage(Bullet bullet)
+    {
+
+        if (bullet.BulletColor == BulletColor.Yellow)
+        {
+            Debug.Log("bullet");
+            bullet.gameObject.SetActive(false);
+            Destroy(bullet.gameObject);
+            hp -= 1;
+            Instantiate(deathParticle, transform.position, transform.rotation);
+        }
+    } 
+
     private void OnTriggerEnter2D(Collider2D _collision)
     {
-        // 총알 맞기
-        if (_collision.gameObject.CompareTag("Bullet"))
-        {
-            
-            Bullet bullet = _collision.gameObject.GetComponent<Bullet>();
-
-            if (bullet.bulletColor == Bullet.BulletColor.Yellow)
-            {
-                Debug.Log("bullet");
-                _collision.gameObject.SetActive(false);
-                Destroy(_collision.gameObject);
-                hp -= 1;
-                OnHpDownEvent?.Invoke(hp);
-                Instantiate(deathParticle, transform.position, transform.rotation);
-            }
-        }
-        
         //환자 살리기
         if (_collision.gameObject.CompareTag("Patient"))
         {
