@@ -214,14 +214,12 @@ public class Enemy : MonoBehaviour
             if (bullet.BulletColor == BulletColor.Blue)
             {
                 DamagedBullet("Blue");
-                bullet.gameObject.SetActive(false);
                 Destroy(bullet.gameObject);
                 currentState = EnemyState.Chasing;
             }
             else if (bullet.BulletColor == BulletColor.Red)
             {
                 DamagedBullet("Red");
-                bullet.gameObject.SetActive(false);
                 Destroy(bullet.gameObject);
                 currentState = EnemyState.Chasing;
             }
@@ -231,14 +229,12 @@ public class Enemy : MonoBehaviour
         {
             if (bullet.BulletColor == BulletColor.Blue)
             {
-                bullet.gameObject.SetActive(false);
                 Destroy(bullet.gameObject);
                 DamagedBullet("Blue");
 
             }
             else if (bullet.BulletColor == BulletColor.Red)
             {
-                bullet.gameObject.SetActive(false);
                 Destroy(bullet.gameObject);
                 DamagedBullet("Red");
             }
