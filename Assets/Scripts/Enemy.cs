@@ -432,7 +432,7 @@ public class Enemy : MonoBehaviour
     private void ChasePlayer()
     {
 
-        if (lastPlayerPosition == null) return;
+        if (lastPlayerPosition == null || agent == null) return;
 
         agent.SetDestination(lastPlayerPosition); // 마지막으로 본 위치로 이동
 
