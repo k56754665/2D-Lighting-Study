@@ -53,7 +53,7 @@ public class Bomb : MonoBehaviour
             PlayerController player = nearbyObject.GetComponent<PlayerController>();
             if (player != null)
             {
-                player.hp -= damage;
+                player.TakeBombDamage();
             }
 
             // 적이 범위 안에 있다면 데미지 처리
