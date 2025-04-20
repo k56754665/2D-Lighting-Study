@@ -458,7 +458,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.3
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -554,7 +554,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d2835b5fb4f5354582967fff50b8606, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gunVolume: 0.25
+  _gunVolume: 0.05
+  _assassinationVolume: 0.15
 --- !u!1 &3845376938114112903
 GameObject:
   m_ObjectHideFlags: 0

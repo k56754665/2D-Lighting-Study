@@ -7,6 +7,7 @@ public class PlayerInteraction : MonoBehaviour
 {
     PlayerController _playerController;
     GameManager _gameManager;
+    PlayerSound _playerSound;
 
     // 구출
     [SerializeField] ParticleSystem _healParticle;
@@ -27,6 +28,7 @@ public class PlayerInteraction : MonoBehaviour
     void Start()
     {
         _playerController = GetComponent<PlayerController>();
+        _playerSound = GetComponent<PlayerSound>();
         _gameManager = GameObject.FindFirstObjectByType<GameManager>();
         InputManager.Instance.interactionAction += PlayerInteractionAction;
         InputManager.Instance.holdInteractionAction += PlayerHoldInteractionAction;
@@ -116,7 +118,8 @@ public class PlayerInteraction : MonoBehaviour
         if (CheckAssassinateCondition(target))
         {
             target.GetComponent<Enemy>().EnemyDie();
-            Instantiate(_healParticle, transform.position, transform.rotation);
+            _playerSound.PlayAssassinationSound();
+            //Instantiate(_healParticle, transform.position, transform.rotation);
         }
     }
 

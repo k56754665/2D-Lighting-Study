@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     PlayerInteraction _playerInteraction;
     SpriteRenderer _spriteRenderer;
     PlayerAnimatorController _playerAnimatorController;
+    PlayerSound _playerSound;
 
     public int hp;
     public int maxHp;
@@ -40,6 +41,7 @@ public class PlayerController : MonoBehaviour
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _playerAnimatorController = GetComponent<PlayerAnimatorController>();
         _gameManager = GameManager.Instance;
+        _playerSound = GetComponent<PlayerSound>();
         InputManager.Instance.runAction += PlayerRun;
         InputManager.Instance.stopRunAction += StopRun;
     }
@@ -195,6 +197,7 @@ public class PlayerController : MonoBehaviour
     {
         if (bullet.BulletColor == BulletColor.Yellow)
         {
+            _playerSound.PlayHitSound();
             Destroy(bullet.gameObject);
             hp -= 1;
             OnHpDownEvent?.Invoke(hp);
@@ -203,6 +206,7 @@ public class PlayerController : MonoBehaviour
     }
     public void TakeBombDamage()
     {
+        _playerSound.PlayHitSound();
         hp -= 3;
         OnHpDownEvent?.Invoke(2);
         OnHpDownEvent?.Invoke(1);
