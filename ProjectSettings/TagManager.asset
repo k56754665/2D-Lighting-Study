@@ -12,6 +12,7 @@ TagManager:
   - Object
   - Emergency Kit
   - WeakWall
+  - Poro
   layers:
   - Default
   - TransparentFX

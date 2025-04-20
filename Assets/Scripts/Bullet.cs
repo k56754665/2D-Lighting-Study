@@ -65,6 +65,10 @@ public class Bullet : MonoBehaviour
                 {
                     hit.collider.gameObject.GetComponent<WeakWall>().TakeDamage(this);
                 }
+                else if (hit.collider.CompareTag("Poro"))
+                {
+                    hit.collider.gameObject.GetComponent<Poro>().TakeDamage();
+                }
             }
         }
     }
