@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 33c9d529dbef3834aabefe415a8e5670
+guid: 81654df22a4cfec41ac1c112fa291b9e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5300757227190793532
-    second: TitleImage_0
+      213: -1635857550551293758
+    second: BloodScreen_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: TitleImage_0
+      name: BloodScreen_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c35ba4f0d92109940800000000000000
-      internalID: 5300757227190793532
+      spriteID: 2c0ef3499344c49e0800000000000000
+      internalID: -1635857550551293758
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      TitleImage_0: 5300757227190793532
+      BloodScreen_0: -1635857550551293758
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
