@@ -1,21 +1,30 @@
 using UnityEngine;
 using UnityEngine.AI;
 using NavMeshPlus.Components; // NavMeshPlus용 네임스페이스
+using System.Collections;
 
 public class WeakWall : MonoBehaviour
 {
-    [SerializeField] private int _hp = 1;
-    [SerializeField] private NavMeshSurface navMeshSurface; //NavMeshSurface
+    [SerializeField] int _hp = 1;
+    [SerializeField] NavMeshSurface _navMeshSurface; //NavMeshSurface
 
-    private void Start()
+    void Start()
     {
-        if (navMeshSurface == null)
+        if (_navMeshSurface == null)
         {
-            navMeshSurface = FindObjectOfType<NavMeshSurface>();
-            if (navMeshSurface == null)
+            _navMeshSurface = FindObjectOfType<NavMeshSurface>();
+            if (_navMeshSurface == null)
             {
                 Debug.LogError("NavMeshSurface2D가 씬에 없습니다.");
             }
+        }
+
+        // NavMeshModifier 추가
+        if (!GetComponent<NavMeshModifier>())
+        {
+            NavMeshModifier modifier = gameObject.AddComponent<NavMeshModifier>();
+            modifier.overrideArea = true;
+            modifier.area = 1; // "Not Walkable"
         }
     }
 
@@ -24,17 +33,10 @@ public class WeakWall : MonoBehaviour
         _hp--;
         if (_hp <= 0)
         {
+            // 오브젝트 파괴 예약
             Destroy(gameObject);
-            UpdateNavMesh();
-        }
-    }
-
-    private void UpdateNavMesh()
-    {
-        if (navMeshSurface != null)
-        {
-            navMeshSurface.BuildNavMesh(); // 2D NavMesh 업데이트
-            Debug.Log("NavMesh가 업데이트되었습니다.");
+            // NavMesh 업데이트를 프레임 후에 실행
+            NavMeshManager.Instance.RequestNavMeshUpdate();
         }
     }
 }
