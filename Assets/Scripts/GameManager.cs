@@ -14,7 +14,8 @@ public class GameManager : MonoBehaviour
     private TextMeshProUGUI timerText;
 
     [Header("Game System")]
-    public bool isgameover = false;
+    bool _isgameover = false;
+    public bool IsGameOver => _isgameover; // 게임 오버 상태
     public bool isGameClear = false;
     public float startingTime = 60f; // 시작시간 초 단위
     private float timeRemaining;
@@ -55,10 +56,14 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("GameManager Init");
         timeRemaining = startingTime;
-        isgameover = false;
+        _isgameover = false;
         isGameClear = false;
 
         player = GameObject.FindFirstObjectByType<PlayerController>();
+        if (player == null)
+        {
+            Debug.Log("Player null");
+        }
         canvas = GameObject.FindFirstObjectByType<Canvas_Script>();
         if (canvas != null)
         {
@@ -72,7 +77,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         // 남은 시간이 0보다 큰 경우에만 감소
-        if (timeRemaining > 0 && !isgameover)
+        if (timeRemaining > 0 && !_isgameover)
         {
             timeRemaining -= Time.deltaTime; // 매 프레임 시간 감소
             UpdateTimerDisplay(); // 타이머 표시 업데이트
@@ -110,7 +115,7 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(1f); 
 
-        isgameover = true;
+        _isgameover = true;
         canvas.gameOver.SetActive(true);
     }
 

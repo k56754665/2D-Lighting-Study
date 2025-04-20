@@ -34,12 +34,12 @@ public class PlayerController : MonoBehaviour
         hp = maxHp;
         runMultiply = 1;
 
-        _gameManager = GameObject.FindFirstObjectByType<GameManager>();
         _canvas = GameObject.FindFirstObjectByType<Canvas_Script>();
         _playerMove = GetComponent<PlayerMove>();
         _playerInteraction = GetComponent<PlayerInteraction>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _playerAnimatorController = GetComponent<PlayerAnimatorController>();
+        _gameManager = GameManager.Instance;
         InputManager.Instance.runAction += PlayerRun;
         InputManager.Instance.stopRunAction += StopRun;
 
@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour
         SetHealth();
 
 
-        if (!_gameManager.isgameover)
+        if (!_gameManager.IsGameOver)
         {
             // 플레이어 상태에 따른 속도 배수 변화
             switch (_currentState)
@@ -162,7 +162,7 @@ public class PlayerController : MonoBehaviour
 
     public void ExitDeadAnimation()
     {
-        _gameManager.Gameover();
+        GameManager.Instance.Gameover();
         TriggerDeath();
         if (gameObject != null)
         {
