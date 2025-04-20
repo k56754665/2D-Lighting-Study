@@ -22,6 +22,7 @@ public class CollapsedWall : MonoBehaviour
     public void Activate()
     {
         if (isMoveInWall) return; // 이미 벽 안에 있는 경우
+        Debug.Log("CollapsedWall|Jump");
         isMoveInWall = true; // 벽 안으로 이동 중
         _playerController.CurrentState = PlayerState.Interaction;
         _playerFire.CanFire = false;

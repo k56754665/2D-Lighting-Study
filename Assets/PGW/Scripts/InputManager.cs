@@ -29,6 +29,8 @@ public class InputManager : MonoBehaviour
     public Vector2 PointerMoveInput => _pointerMoveInput;
     public bool IsFocusing => _isFocusing;
 
+    PlayerController _playerController;
+
 
     void Awake()
     {
@@ -56,6 +58,11 @@ public class InputManager : MonoBehaviour
         _inputSystemActions.Player.Run.canceled += OnRun;
         _inputSystemActions.Player.Focus.performed += OnFocus;
         _inputSystemActions.Player.Focus.canceled += OnFocus;
+    }
+
+    void Start()
+    {
+        _playerController = GameObject.FindAnyObjectByType<PlayerController>();
     }
 
     private void Update()
@@ -122,6 +129,7 @@ public class InputManager : MonoBehaviour
         if (context.performed)
         {
             _isFocusing = true;
+            Debug.Log("Camera|Focus|x=" + _playerController.transform.position.x + "|y=" + _playerController.transform.position.y);
         }
         else if (context.canceled)
         {

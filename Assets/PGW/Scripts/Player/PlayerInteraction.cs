@@ -115,6 +115,7 @@ public class PlayerInteraction : MonoBehaviour
         if (_isInCloset) return;
         if (CheckAssassinateCondition(target))
         {
+            Debug.Log("EnemyDie|Assassinate|x=" + target.transform.position.x + "|y=" + target.transform.position.y);
             target.GetComponent<Enemy>().EnemyDie();
             Instantiate(_healParticle, transform.position, transform.rotation);
         }

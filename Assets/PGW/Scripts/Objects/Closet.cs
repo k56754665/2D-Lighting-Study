@@ -27,6 +27,7 @@ public class Closet : MonoBehaviour
         Vector2 targetPosition;
         if (!_playerInteraction.IsInCloset)
         {
+            Debug.Log("Closet|Enter");
             _playerInteraction.OnClosetEnterEvent?.Invoke();
             _playerController.CurrentState = PlayerState.Interaction;
             _playerController.GetComponent<CircleCollider2D>().enabled = false;

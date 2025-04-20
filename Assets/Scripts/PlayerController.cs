@@ -1,6 +1,7 @@
 using UnityEngine;
 using Define;
 using System;
+using UnityEngine.Rendering;
 
 public class PlayerController : MonoBehaviour
 {
@@ -21,6 +22,10 @@ public class PlayerController : MonoBehaviour
     public int hp;
     public int maxHp;
     float runMultiply = 1;
+
+    Vector3 _startRunPosition;
+    Vector3 _endRunPosition;
+    float _startRunTime;
 
     public PlayerState CurrentState { get { return _currentState; } set { _currentState = value; } }
     public Target TargetType { get { return _targetType; } set { _targetType = value; } }
@@ -145,7 +150,11 @@ public class PlayerController : MonoBehaviour
     void PlayerRun()
     {
         if (!_playerInteraction.IsInCloset)
+        {
             _currentState = PlayerState.Run;
+            _startRunPosition = transform.position;
+            _startRunTime = Time.time;
+        }
     }
 
     void StopRun()
@@ -153,6 +162,9 @@ public class PlayerController : MonoBehaviour
         if (_currentState == PlayerState.Run)
         {
             _currentState = PlayerState.Walk;
+            _endRunPosition = transform.position;
+            float runDuration = Time.time - _startRunTime;
+            Debug.Log("Run|" + runDuration + "|Startx=" + _startRunPosition.x + "|Starty=" + _startRunPosition.y + "|Endx=" + _endRunPosition.x + "|Endy=" + _endRunPosition.y);
         }
     }
 

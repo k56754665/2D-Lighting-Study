@@ -102,10 +102,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
     public void Gameover()
     {
         if (player == null) return;
+        Debug.Log("PlayerDie|Dead|x=" + player.transform.position.x + "|y=" + player.transform.position.y);
         Destroy(player.gameObject);
         StartCoroutine(DelayedGameOverActions());
     }

@@ -118,9 +118,9 @@ public class PlayerFire : MonoBehaviour
          // 총 발사 불가능 상태일 때는 아무것도 하지 않음
         if (!_canFire) return;
 
+        Debug.Log("Fire|" + currentGunType + "|x=" + transform.position.x + "|y=" + transform.position.y);
         if (currentGunType == GunType.Can)
         {
-            
             Vector3 mouseWorldPos = InputManager.Instance.PointerMoveInput;
             mouseWorldPos.z = 0f; // 2D에서는 z 고정
 
