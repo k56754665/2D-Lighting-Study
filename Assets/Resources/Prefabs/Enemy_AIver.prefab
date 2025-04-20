@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 383382431209982614}
   - component: {fileID: 4522709550125578192}
   - component: {fileID: 7635024200019298450}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FOV_Short
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,7 +106,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 807148387010902255}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FOV
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -141,7 +141,7 @@ GameObject:
   - component: {fileID: 630568068795886005}
   - component: {fileID: 8347029611491770109}
   - component: {fileID: 4780080861289346003}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -206,7 +206,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: 8596640243658272642, guid: 56816525ba634da4280a21ddda8e419c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -682,7 +682,7 @@ GameObject:
   - component: {fileID: 6485019306618614659}
   - component: {fileID: 4688603464645918144}
   - component: {fileID: 1717851459812426731}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FOV_Long
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -987,6 +987,7 @@ GameObject:
   - component: {fileID: 886506546772045523}
   - component: {fileID: 2235226909004363510}
   - component: {fileID: 3793459446754320628}
+  - component: {fileID: 1007858666881000477}
   m_Layer: 0
   m_Name: Enemy_AIver
   m_TagString: Enemy
@@ -1173,6 +1174,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   angularSpeed: 100
+--- !u!114 &1007858666881000477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7511891896799569590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b6076c6da7712240bd8993b1e729707, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemType: 0
 --- !u!1 &8563791974904183793
 GameObject:
   m_ObjectHideFlags: 0

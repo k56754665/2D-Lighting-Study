@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Collections;
 using NavMeshPlus.Extensions;
 using Define;
+using System;
 
 public class Enemy : MonoBehaviour
 {
@@ -89,6 +90,12 @@ public class Enemy : MonoBehaviour
     Animator _animator;
     SpriteRenderer _spriteRenderer;
 
+    // 적 처치 시 아이템 드랍
+    EnemyDropItem _enemyDropItem;
+
+    // 적 피격 시 핏자국 생성
+    GameObject _bloodSprite;
+
     public Vector3 SoundwavePosition
     {
         get { return _soundwavePosition; }
@@ -109,6 +116,9 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
+        _enemyDropItem = GetComponent<EnemyDropItem>();
+        _bloodSprite = Resources.Load<GameObject>("Prefabs/KGJ/Blood");
+
         // 적 암살 E UI 시작시 비활성화
         _pressE_UI = transform.GetChild(0).GetComponent<Canvas>();
         _pressE_UI.enabled = false;
@@ -135,7 +145,7 @@ public class Enemy : MonoBehaviour
             return;
         }
 
-        _spriteTransform.eulerAngles = new Vector3(0, 0, 0);
+        _spriteTransform.rotation = Quaternion.identity;
 
         // 적 대사 변경
         enemyDialogue.DialogueTalking(currentState);
@@ -247,6 +257,7 @@ public class Enemy : MonoBehaviour
     /// </summary>
     public void DamagedBullet(string _color)
     {
+        MakeBlood();
         if (_color == "Blue")
         {
             hp -= 1;
@@ -257,6 +268,7 @@ public class Enemy : MonoBehaviour
             hp -= 4;
             Instantiate(RedDamagedParticle, _fovTransform.position, _fovTransform.rotation);
         }
+        
     }
 
     /// <summary>
@@ -446,8 +458,8 @@ public class Enemy : MonoBehaviour
     void SearchWalkPoint()
     {
         // 범위 내 랜덤한 포인트 지정
-        float randomX = Random.Range(-searchingWalkPointRange, searchingWalkPointRange);
-        float randomY = Random.Range(-searchingWalkPointRange, searchingWalkPointRange);
+        float randomX = UnityEngine.Random.Range(-searchingWalkPointRange, searchingWalkPointRange);
+        float randomY = UnityEngine.Random.Range(-searchingWalkPointRange, searchingWalkPointRange);
 
         Vector3 randomPoint = new Vector3(transform.position.x + randomX, transform.position.y + randomY, 0);
 
@@ -527,6 +539,7 @@ public class Enemy : MonoBehaviour
 
             // 총 쏘는 애니메이션 재생
             _animator.Play("EnemyGun1");
+            _enemyDropItem.ReduceAmmoNum();
 
             // 총알 생성
             GameObject bullet = Instantiate(bulletPrefab, gunPosition.position, targetRotation);
@@ -602,10 +615,18 @@ public class Enemy : MonoBehaviour
         _shortFovLight.TurnOn();
     }
 
+    void MakeBlood()
+    {
+        Vector2 randomOffset = UnityEngine.Random.insideUnitCircle * 1f; // 1f 반경 원 안의 랜덤 위치
+        Vector3 spawnPosition = transform.position + new Vector3(randomOffset.x, randomOffset.y, 0);
+        Instantiate(_bloodSprite, spawnPosition, transform.rotation);
+    }
+
     public void EnemyDie()
     {
         Instantiate(RedDamagedParticle, transform.position, transform.rotation);
-
+        MakeBlood();
+        _enemyDropItem.DropItem();
         gameObject.SetActive(false);
         EnemyManager.Instance.AddDeadEnemyStatus(this);
     }
