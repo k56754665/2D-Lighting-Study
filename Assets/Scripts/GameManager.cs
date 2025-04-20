@@ -2,9 +2,13 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using NavMeshPlus.Components; // NavMeshPlus용 네임스페이스
 
 public class GameManager : MonoBehaviour
 {
+    static GameManager _instance;
+    public static GameManager Instance => _instance; // Singleton 인스턴스
+
     [Header("Prefabs")]
     public PlayerController player;
     public Canvas_Script canvas;
@@ -16,14 +20,52 @@ public class GameManager : MonoBehaviour
     public float startingTime = 60f; // 시작시간 초 단위
     private float timeRemaining;
 
+    void Awake()
+    {
+        if (_instance == null)
+        {
+            _instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+    }
+
     void Start()
     {
-        timeRemaining = startingTime; // 남은 시간 초기화
+        Init();
+    }
+
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "Main 2")
+        {
+            Init();
+        }
+    }
+
+    void Init()
+    {
+        timeRemaining = startingTime;
+        isgameover = false;
+        isGameClear = false;
 
         player = GameObject.FindFirstObjectByType<PlayerController>();
         canvas = GameObject.FindFirstObjectByType<Canvas_Script>();
-        timerText = canvas.timer.GetComponent<TextMeshProUGUI>();
-        canvas.GetComponent<Canvas_Script>().gameOver.SetActive(false);
+        if (canvas != null)
+        {
+            timerText = canvas.timer.GetComponent<TextMeshProUGUI>();
+            canvas.gameOver.SetActive(false);
+        }
+        NavMeshManager.Instance.RequestNavMeshUpdate();
     }
 
     void Update()

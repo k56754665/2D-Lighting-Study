@@ -112,7 +112,7 @@ public class EnemyManager : MonoBehaviour
         float closestDistance = Mathf.Infinity;
         foreach (var enemy in _enemyStatus.Keys)
         {
-            if (_enemyStatus[enemy])
+            if (_enemyStatus[enemy] && _player != null)
             {
                 float distance = Vector3.Distance(_player.transform.position, enemy.transform.position);
                 if (distance < closestDistance)
