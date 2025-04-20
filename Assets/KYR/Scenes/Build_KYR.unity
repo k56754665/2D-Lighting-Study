@@ -7390,18 +7390,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7176211444520132676, guid: bb0ae4d5380e049448cb8c0039a05e9c, type: 3}
-      propertyPath: m_Color.b
-      value: 0.10933607
-      objectReference: {fileID: 0}
-    - target: {fileID: 7176211444520132676, guid: bb0ae4d5380e049448cb8c0039a05e9c, type: 3}
-      propertyPath: m_Color.g
-      value: 0.783517
-      objectReference: {fileID: 0}
-    - target: {fileID: 7176211444520132676, guid: bb0ae4d5380e049448cb8c0039a05e9c, type: 3}
-      propertyPath: m_Color.r
-      value: 0.8584906
-      objectReference: {fileID: 0}
     - target: {fileID: 8993121533483068953, guid: bb0ae4d5380e049448cb8c0039a05e9c, type: 3}
       propertyPath: m_Name
       value: Closet
@@ -29658,18 +29646,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7176211444520132676, guid: bb0ae4d5380e049448cb8c0039a05e9c, type: 3}
-      propertyPath: m_Color.b
-      value: 0.10933607
-      objectReference: {fileID: 0}
-    - target: {fileID: 7176211444520132676, guid: bb0ae4d5380e049448cb8c0039a05e9c, type: 3}
-      propertyPath: m_Color.g
-      value: 0.783517
-      objectReference: {fileID: 0}
-    - target: {fileID: 7176211444520132676, guid: bb0ae4d5380e049448cb8c0039a05e9c, type: 3}
-      propertyPath: m_Color.r
-      value: 0.8584906
-      objectReference: {fileID: 0}
     - target: {fileID: 8993121533483068953, guid: bb0ae4d5380e049448cb8c0039a05e9c, type: 3}
       propertyPath: m_Name
       value: Closet (1)
@@ -43973,18 +43949,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7851094033479117205, guid: 73cbe76fea68b614582ed1adb5335459, type: 3}
-      propertyPath: m_Color.b
-      value: 0.43867922
-      objectReference: {fileID: 0}
-    - target: {fileID: 7851094033479117205, guid: 73cbe76fea68b614582ed1adb5335459, type: 3}
-      propertyPath: m_Color.g
-      value: 0.5339545
-      objectReference: {fileID: 0}
-    - target: {fileID: 7851094033479117205, guid: 73cbe76fea68b614582ed1adb5335459, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8447436383583269905, guid: 73cbe76fea68b614582ed1adb5335459, type: 3}
       propertyPath: m_LocalScale.x
       value: 6
