@@ -12,7 +12,7 @@ public class WeakWall : MonoBehaviour
     {
         if (_navMeshSurface == null)
         {
-            _navMeshSurface = FindObjectOfType<NavMeshSurface>();
+            _navMeshSurface = GameObject.FindAnyObjectByType<NavMeshSurface>();
             if (_navMeshSurface == null)
             {
                 Debug.LogError("NavMeshSurface2D가 씬에 없습니다.");
