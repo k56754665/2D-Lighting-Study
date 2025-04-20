@@ -277,7 +277,7 @@ public class Enemy : MonoBehaviour
         MakeBlood();
         if (_color == "Blue")
         {
-            hp -= 1;
+            hp -= 2;
             Instantiate(RedDamagedParticle, _fovTransform.position, _fovTransform.rotation);
         }
         else if (_color == "Red")

@@ -1,5 +1,6 @@
 using UnityEngine;
 using Define;
+using System.Collections;
 
 public class PlayerFire : MonoBehaviour
 {
@@ -15,8 +16,8 @@ public class PlayerFire : MonoBehaviour
     GameObject _canObject;
     GameObject _smokeBomb;
 
-    public int blueGunNumber;
-    public int redGunNumber;
+    public int blueGunNumber = 20;
+    public int redGunNumber = 20;
     public int smokeBombNumber;
 
     bool _canFire; // 총 발사 가능 여부
@@ -149,6 +150,7 @@ public class PlayerFire : MonoBehaviour
             Instantiate(soundwaveBlueGun, transform.position, transform.rotation);
             blueGunNumber -= 1;
             _canvas.UpdateGunNumber(_canvas.blueGunUINum, blueGunNumber);
+            StartCoroutine(FireDelay(0.1f)); // 발사 딜레이
         }
         else if (currentGunType == GunType.RedGun && redGunNumber > 0)
         {
@@ -158,8 +160,16 @@ public class PlayerFire : MonoBehaviour
             Instantiate(soundwaveRedGun, transform.position, transform.rotation);
             redGunNumber -= 1;
             _canvas.UpdateGunNumber(_canvas.redGunUINum, redGunNumber);
+            StartCoroutine(FireDelay(0.1f)); // 발사 딜레이
         }
         
+    }
+
+    IEnumerator FireDelay(float delayTime)
+    {
+        _canFire = false; // 총 발사 불가능 상태로 설정
+        yield return new WaitForSeconds(delayTime);
+        _canFire = true; // 총 발사 가능 상태로 설정
     }
 
     private void OnDestroy()
