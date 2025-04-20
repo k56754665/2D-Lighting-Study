@@ -25,10 +25,6 @@ public class NavMeshManager : MonoBehaviour
         if (navMeshSurface == null)
         {
             navMeshSurface = FindAnyObjectByType<NavMeshSurface>();
-            if (navMeshSurface == null)
-            {
-                Debug.LogError("NavMeshSurface가 씬에 없습니다!");
-            }
         }
     }
 
@@ -36,7 +32,6 @@ public class NavMeshManager : MonoBehaviour
     {
         if (_instance != null && _instance.navMeshSurface != null)
         {
-            Debug.Log("not null");
             _instance.StartCoroutine(_instance.UpdateNavMeshDelayed());
         }
     }
@@ -46,6 +41,5 @@ public class NavMeshManager : MonoBehaviour
         // 한 프레임 대기해서 Destroy가 처리될 시간 확보
         yield return new WaitForSeconds(0.1f); // 0.1초 대기
         navMeshSurface.UpdateNavMesh(navMeshSurface.navMeshData);
-        Debug.Log("NavMesh 업데이트 완료");
     }
 }

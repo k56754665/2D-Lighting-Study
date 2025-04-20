@@ -52,7 +52,6 @@ public class Bullet : MonoBehaviour
         {
             if (hit.collider != null)
             {
-                Debug.Log("충돌한 오브젝트 : " + hit.collider.name);
                 // 충돌한 오브젝트 처리
                 if (hit.collider.CompareTag("Enemy"))
                 {

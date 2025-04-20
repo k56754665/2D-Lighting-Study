@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name == "Main 2")
+        if (scene.name == "Build")
         {
             Init();
         }
@@ -54,16 +54,11 @@ public class GameManager : MonoBehaviour
 
     void Init()
     {
-        Debug.Log("GameManager Init");
         timeRemaining = startingTime;
         _isgameover = false;
         isGameClear = false;
 
         player = GameObject.FindFirstObjectByType<PlayerController>();
-        if (player == null)
-        {
-            Debug.Log("Player null");
-        }
         canvas = GameObject.FindFirstObjectByType<Canvas_Script>();
         if (canvas != null)
         {

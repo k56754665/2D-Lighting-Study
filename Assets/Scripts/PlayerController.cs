@@ -199,8 +199,6 @@ public class PlayerController : MonoBehaviour
     {
         if (bullet.BulletColor == BulletColor.Yellow)
         {
-
-            Debug.Log("bullet");
             Destroy(bullet.gameObject);
             hp -= 1;
             OnHpDownEvent?.Invoke(hp);

@@ -544,7 +544,6 @@ public class Enemy : MonoBehaviour
 
             // 총알 생성
             GameObject bullet = Instantiate(bulletPrefab, gunPosition.position, targetRotation);
-            Debug.Log("총을 쏩니다!");
 
             // 총알 rigidbody 가져온 후, 힘 가하기
             Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
