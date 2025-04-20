@@ -6,6 +6,7 @@ public class PlayerFire : MonoBehaviour
     Canvas_Script _canvas;
     public GunType currentGunType;
     PlayerAnimatorController _playerAnimatorController;
+    PlayerSound _playerSound;
 
     [SerializeField] GameObject gun;
     [SerializeField] GameObject soundwaveBlueGun;
@@ -24,6 +25,7 @@ public class PlayerFire : MonoBehaviour
     void Start()
     {
         _playerAnimatorController = GetComponent<PlayerAnimatorController>();
+        _playerSound = GetComponent<PlayerSound>();
 
         _canvas = GameObject.FindFirstObjectByType<Canvas_Script>();
         _canvas.UpdateGunNumber(_canvas.blueGunUINum, blueGunNumber);
@@ -141,6 +143,7 @@ public class PlayerFire : MonoBehaviour
         }
         else if (currentGunType == GunType.BlueGun && blueGunNumber > 0)
         {
+            _playerSound.PlayGunSound();
             _playerAnimatorController.PlayAnimation("PlayerGun1");
             gun.GetComponent<Gun>().BlueGunFire();
             Instantiate(soundwaveBlueGun, transform.position, transform.rotation);
@@ -149,6 +152,7 @@ public class PlayerFire : MonoBehaviour
         }
         else if (currentGunType == GunType.RedGun && redGunNumber > 0)
         {
+            _playerSound.PlayGunSound();
             _playerAnimatorController.PlayAnimation("PlayerGun2");
             gun.GetComponent<Gun>().RedGunFire();
             Instantiate(soundwaveRedGun, transform.position, transform.rotation);

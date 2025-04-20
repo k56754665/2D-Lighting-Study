@@ -105,6 +105,8 @@ public class Enemy : MonoBehaviour
 
     public Action OnEnemyGunEvent;
 
+    Quaternion _initialRotation;
+
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -118,6 +120,8 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
+        _initialRotation = _spriteTransform.rotation;
+
         _enemyDropItem = GetComponent<EnemyDropItem>();
         _bloodSprite = Resources.Load<GameObject>("Prefabs/KGJ/Blood");
 
@@ -141,15 +145,13 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
+        _spriteTransform.rotation = _initialRotation;
+
         if (player == null || agent == null)
         {
             StopAllCoroutines();
             return;
         }
-
-        //_spriteTransform.rotation = Quaternion.identity;
-        _spriteTransform.SetPositionAndRotation(_spriteTransform.position, Quaternion.identity);
-
 
         // 적 대사 변경
         enemyDialogue.DialogueTalking(currentState);
@@ -538,7 +540,6 @@ public class Enemy : MonoBehaviour
             Vector3 directionToPlayer = (player.position - gunPosition.position).normalized;
             float angle = Mathf.Atan2(directionToPlayer.y, directionToPlayer.x) * Mathf.Rad2Deg - 90;
             Quaternion targetRotation = Quaternion.Euler(new Vector3(0, 0, angle));
-            // TODO : 회전 수정
             _fovTransform.rotation = targetRotation;
 
             // 총 쏘는 애니메이션 재생
