@@ -103,6 +103,8 @@ public class Enemy : MonoBehaviour
     }
     Vector3 _soundwavePosition;
 
+    public Action OnEnemyGunEvent;
+
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -542,6 +544,7 @@ public class Enemy : MonoBehaviour
             // 총 쏘는 애니메이션 재생
             _animator.Play("EnemyGun1");
             _enemyDropItem.ReduceAmmoNum();
+            OnEnemyGunEvent?.Invoke();
 
             // 총알 생성
             GameObject bullet = Instantiate(bulletPrefab, gunPosition.position, targetRotation);
