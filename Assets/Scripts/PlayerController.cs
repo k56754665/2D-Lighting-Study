@@ -105,7 +105,6 @@ public class PlayerController : MonoBehaviour
                 _playerAnimatorController.PlayAnimation("PlayerDead");
             }
 
-            // TODO : closet에 들어가면 타겟 변경하지 않도록함
             if (_playerInteraction.IsInCloset) return;
 
             if(_target != _lastTarget)
