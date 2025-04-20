@@ -42,9 +42,6 @@ public class PlayerController : MonoBehaviour
         _gameManager = GameManager.Instance;
         InputManager.Instance.runAction += PlayerRun;
         InputManager.Instance.stopRunAction += StopRun;
-
-        SavePointManager.Instance.OnSaveEvent += SavePointPlayer;
-        SavePointManager.Instance.OnLoadEvent += LoadSavePointPlayer;
     }
 
     private void LateUpdate()
@@ -238,7 +235,6 @@ public class PlayerController : MonoBehaviour
         {
             _targetType = Target.Object;
             _target = collision.gameObject;
-            Debug.Log("Object");
         }
     }
 
@@ -248,34 +244,13 @@ public class PlayerController : MonoBehaviour
         {
             _targetType = Target.None;
             _target = null;
-            Debug.Log("Exit Object");
         }
     }
 
-    /// <summary>
-    /// 현재 플레이어의 hp와 위치를 세이브 포인트에 저장하는 함수
-    /// </summary>
-
-    void SavePointPlayer()
-    {
-        SavePointManager.Instance.SaveHP = hp;
-        SavePointManager.Instance.SavePlayerPosition = transform.position;
-    }
-
-    /// <summary>
-    /// 플레이어의 hp와 위치를 세이브 포인트에 저장된 값으로 변경해주는 함수
-    /// </summary>
-    void LoadSavePointPlayer()
-    {
-        hp = SavePointManager.Instance.SaveHP;
-        transform.position = SavePointManager.Instance.SavePlayerPosition;
-    }
 
     private void OnDestroy()
     {
         InputManager.Instance.runAction -= PlayerRun;
         InputManager.Instance.stopRunAction -= StopRun;
-        SavePointManager.Instance.OnSaveEvent -= SavePointPlayer;
-        SavePointManager.Instance.OnLoadEvent -= LoadSavePointPlayer;
     }
 }

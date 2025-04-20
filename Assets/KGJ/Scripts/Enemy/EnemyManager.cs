@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
@@ -37,18 +38,16 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-    void Start()
+    public void Init()
     {
         _player = GameObject.FindFirstObjectByType<PlayerController>();
         _enemyRoot = FindAnyObjectByType<Enemies>();
         Enemy[] _enemiesArray = _enemyRoot.GetComponentsInChildren<Enemy>();
         for (int i = 0; i < _enemiesArray.Length; i++)
         {
-            _enemyStatus.Add(_enemiesArray[i], true); // 적 생존 상태를 딕셔너리에 추가
+            if (!_enemyStatus.ContainsKey(_enemiesArray[i]))
+                _enemyStatus.Add(_enemiesArray[i], true); // 적 생존 상태를 딕셔너리에 추가
         }
-
-        SavePointManager.Instance.OnLoadEvent += LoadEnemyStatus;
-        SavePointManager.Instance.OnSaveEvent += SaveEnemyStatus;
     }
 
     void Update()
@@ -73,6 +72,11 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
+    public void ClearDictionary()
+    {
+        _enemyStatus.Clear();
+    }
+
     /// <summary>
     /// 죽은 적의 상태를 딕셔너리에 반영해주는 함수
     /// </summary>
@@ -82,29 +86,6 @@ public class EnemyManager : MonoBehaviour
         _enemyStatus[enemy] = false;
     }
 
-    /// <summary>
-    /// 세이브 포인트에 현재 적의 생존 현황을 저장하는 함수
-    /// </summary>
-    public void SaveEnemyStatus()
-    {
-        SavePointManager.Instance.SaveEnemyStatus = EnemyStatus;
-    }
-
-    /// <summary>
-    /// 적의 생존 현황을 세이브 포인트에 저장된 값으로 변경해주는 함수
-    /// </summary>
-    public void LoadEnemyStatus()
-    {
-        EnemyStatus = SavePointManager.Instance.SaveEnemyStatus;
-        // 세이브 포인트 시점의 적 생존 현황을 게임 오브젝트 활성화에 적용
-        foreach (var enemy in _enemyStatus.Keys)
-        {
-            if (_enemyStatus[enemy])
-            {
-                enemy.gameObject.SetActive(true);
-            }
-        }
-    }
 
     public GameObject CheckClosestEnemy()
     {

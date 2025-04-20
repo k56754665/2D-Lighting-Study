@@ -210,6 +210,7 @@ public class Enemy : MonoBehaviour
                 DamagedBullet("Blue");
                 bullet.gameObject.SetActive(false);
                 Destroy(bullet.gameObject);
+                StartSearching();
             }
             else if (bullet.BulletColor == BulletColor.Red)
             {

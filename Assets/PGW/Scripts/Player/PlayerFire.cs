@@ -35,9 +35,6 @@ public class PlayerFire : MonoBehaviour
         InputManager.Instance.fireAction += PlayerGunFire; // 총 발사
         InputManager.Instance.changeWeaponAction += CheckMouseWheel; // 총 변경
 
-        SavePointManager.Instance.OnSaveEvent += SavePointFire;
-        SavePointManager.Instance.OnLoadEvent += LoadSavePointFire;
-
         currentGunType = GunType.BlueGun; // 초기 총 종류 설정
         _canFire = true; // 총 발사 가능 상태로 초기화
     }
@@ -161,29 +158,9 @@ public class PlayerFire : MonoBehaviour
         
     }
 
-    /// <summary>
-    /// 현재 총알 수를 세이브 포인트에 저장하는 함수
-    /// </summary>
-    void SavePointFire()
-    {
-        SavePointManager.Instance.SaveBlueGunNumber = blueGunNumber;
-        SavePointManager.Instance.SaveRedGunNumber = redGunNumber;
-    }
-
-    /// <summary>
-    /// 총알 수를 세이브 포인트에 저장된 값으로 변경해주는 함수
-    /// </summary>
-    void LoadSavePointFire()
-    {
-        blueGunNumber = SavePointManager.Instance.SaveBlueGunNumber;
-        redGunNumber = SavePointManager.Instance.SaveRedGunNumber;
-    }
-
     private void OnDestroy()
     {
         InputManager.Instance.fireAction -= PlayerGunFire; // 총 발사
         InputManager.Instance.changeWeaponAction -= CheckMouseWheel; // 총 변경
-        SavePointManager.Instance.OnSaveEvent -= SavePointFire;
-        SavePointManager.Instance.OnLoadEvent -= LoadSavePointFire;
     }
 }
