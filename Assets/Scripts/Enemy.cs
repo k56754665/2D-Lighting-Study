@@ -210,14 +210,14 @@ public class Enemy : MonoBehaviour
                 DamagedBullet("Blue");
                 bullet.gameObject.SetActive(false);
                 Destroy(bullet.gameObject);
-                StartSearching();
+                MoveToPlayerPosition();
             }
             else if (bullet.BulletColor == BulletColor.Red)
             {
                 DamagedBullet("Red");
                 bullet.gameObject.SetActive(false);
                 Destroy(bullet.gameObject);
-                StartSearching();
+                MoveToPlayerPosition();
             }
         }
         // 적이 주변을 살피거나 이미 쫓아갈 때는 두 총 -> 모두 쫓아가기
@@ -270,7 +270,6 @@ public class Enemy : MonoBehaviour
             hp -= 4;
             Instantiate(RedDamagedParticle, _fovTransform.position, _fovTransform.rotation);
         }
-        
     }
 
     /// <summary>

@@ -74,11 +74,6 @@ public class GameManager : MonoBehaviour
             if (SaveManager.Instance.LoadGame(out int savePointIndex, out Vector3 position))
             {
                 player.transform.position = position;
-                Debug.Log($"플레이어 세이브 포인트 {savePointIndex}에서 시작: {position}");
-            }
-            else
-            {
-                Debug.Log("세이브 데이터 없음, 기본 위치에서 시작");
             }
         }
 
