@@ -17,7 +17,6 @@ public class EnemySound : MonoBehaviour
 
     void PlayGunSound()
     {
-        Debug.Log("PlayGunSound");
         _gunAudioSource.PlayOneShot(_gunSound, _gunSoundVolume);
     }
 

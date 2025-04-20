@@ -206,9 +206,11 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(Bullet bullet)
     {
+        Debug.Log("EnemyHit|" + bullet.BulletColor +"|X=" + transform.position.x + "|Y=" + transform.position.y);
         // 적이 순찰중일때는 파란총 -> 스턴, 빨간총 -> 주변살피기
         if (currentState == EnemyState.Patrolling)
         {
+            
             if (bullet.BulletColor == BulletColor.Blue)
             {
                 DamagedBullet("Blue");

@@ -6,11 +6,7 @@ using System.Collections.Generic;
 public class GameLogger : MonoBehaviour
 {
     public static GameLogger Instance { get; private set; }
-
-    private string logFilePath;
-    public string LogFilePath => logFilePath;
-
-    private bool isHeaderWritten = false;
+    private string logFilePath; private bool isHeaderWritten; private const string AUDIO_LISTENER_MESSAGE = "There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene";
 
     private void Awake()
     {
@@ -22,54 +18,49 @@ public class GameLogger : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
-        string logDir = Path.Combine(Application.persistentDataPath, "log"); // 빌드 호환
+        string logDir = Path.Combine(Application.persistentDataPath, "log");
         Directory.CreateDirectory(logDir);
-
-        string fileName = $"GameLog_{DateTime.Now:yyyy-MM-dd_HH-mm-ss}.csv";
-        logFilePath = Path.Combine(logDir, fileName);
+        logFilePath = Path.Combine(logDir, $"GameLog_{DateTime.Now:yyyy-MM-dd_HH-mm-ss}.csv");
 
         Application.logMessageReceived += HandleUnityLog;
-        Log("System|Initialized|Status=OK", LogType.Log); // 초기 로그
+        Log("System|Initialized|Status=OK");
     }
 
-    public void Log(string message, LogType type = LogType.Log, string stackTrace = "")
+    public void Log(string message)
     {
-        string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-        string formatted = $"[{timestamp}] {message}";
-        Debug.Log(formatted);
+        if (message == AUDIO_LISTENER_MESSAGE)
+            return;
 
-        WriteToCsv(timestamp, type.ToString(), message, stackTrace);
+        string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+        Debug.Log($"[{timestamp}] {message}");
+        WriteToCsv(timestamp, message);
     }
 
     private void HandleUnityLog(string logString, string stackTrace, LogType type)
     {
-        if (logString.StartsWith("["))
+        if (type != LogType.Log || logString.StartsWith("[") || logString == AUDIO_LISTENER_MESSAGE)
             return;
 
         string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-        WriteToCsv(timestamp, type.ToString(), logString, stackTrace);
+        WriteToCsv(timestamp, logString);
     }
 
-    private void WriteToCsv(string timestamp, string logType, string message, string stackTrace)
+    private void WriteToCsv(string timestamp, string message)
     {
         try
         {
-            // 기본 열
-            List<string> csvColumns = new List<string> { timestamp, logType };
-            List<string> headerColumns = new List<string> { "Timestamp", "LogType" };
+            var csvColumns = new List<string> { timestamp };
+            var headerColumns = new List<string> { "Timestamp" };
 
-            // 메시지 파싱
-            bool isStructured = ParseMessage(message, out Dictionary<string, string> fields);
+            bool isStructured = ParseMessage(message, out var fields);
 
             if (isStructured)
             {
-                // 구조화된 메시지: Category, Action, Detail1, Detail2, ...
                 csvColumns.Add(EscapeCsvField(fields.GetValueOrDefault("Category", "Unknown")));
                 csvColumns.Add(EscapeCsvField(fields.GetValueOrDefault("Action", "Unknown")));
                 headerColumns.Add("Category");
                 headerColumns.Add("Action");
 
-                // 세부사항(키-값 쌍) 추가
                 foreach (var kvp in fields)
                 {
                     if (kvp.Key != "Category" && kvp.Key != "Action")
@@ -78,29 +69,20 @@ public class GameLogger : MonoBehaviour
                         headerColumns.Add(kvp.Key);
                     }
                 }
-
-                // StackTrace 추가
-                csvColumns.Add(EscapeCsvField(stackTrace));
-                headerColumns.Add("StackTrace");
             }
             else
             {
-                // 비구조화된 메시지: 기존 방식
                 csvColumns.Add(EscapeCsvField(message));
-                csvColumns.Add(EscapeCsvField(stackTrace));
                 headerColumns.Add("Message");
-                headerColumns.Add("StackTrace");
             }
 
-            // 헤더 작성
             if (!isHeaderWritten)
             {
                 File.WriteAllText(logFilePath, string.Join(",", headerColumns) + "\n");
                 isHeaderWritten = true;
             }
 
-            // CSV 행 추가
-            File.AppendAllText(logFilePath, string.Join(",", csvColumns) + Environment.NewLine);
+            File.AppendAllText(logFilePath, string.Join(",", csvColumns) + "\n");
         }
         catch (Exception ex)
         {
@@ -111,24 +93,18 @@ public class GameLogger : MonoBehaviour
     private bool ParseMessage(string message, out Dictionary<string, string> fields)
     {
         fields = new Dictionary<string, string>();
-
-        // 메시지가 형식에 맞는지 확인 (최소 2개 필드: Category|Action)
         string[] parts = message.Split('|');
         if (parts.Length < 2)
             return false;
 
-        // Category와 Action 추가
         fields["Category"] = parts[0].Trim();
         fields["Action"] = parts[1].Trim();
 
-        // 세부사항 파싱 (Detail1=Value1|Detail2=Value2)
         for (int i = 2; i < parts.Length; i++)
         {
             string[] kvp = parts[i].Split('=');
             if (kvp.Length == 2)
-            {
                 fields[kvp[0].Trim()] = kvp[1].Trim();
-            }
         }
 
         return true;
@@ -136,13 +112,12 @@ public class GameLogger : MonoBehaviour
 
     private string EscapeCsvField(string field)
     {
-        if (string.IsNullOrEmpty(field))
-            return "\"\"";
-        return $"\"{field.Replace("\"", "\"\"")}\"";
+        return string.IsNullOrEmpty(field) ? "\"\"" : $"\"{field.Replace("\"", "\"\"")}\"";
     }
 
     private void OnDestroy()
     {
         Application.logMessageReceived -= HandleUnityLog;
     }
+
 }

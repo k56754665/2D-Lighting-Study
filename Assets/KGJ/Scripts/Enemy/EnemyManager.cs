@@ -82,7 +82,6 @@ public class EnemyManager : MonoBehaviour
     /// </summary>
     public void AddDeadEnemyStatus(Enemy enemy)
     {
-        Debug.Log(enemy.name + " Dead");
         _enemyStatus[enemy] = false;
     }
 

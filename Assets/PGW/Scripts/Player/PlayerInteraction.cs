@@ -142,7 +142,6 @@ public class PlayerInteraction : MonoBehaviour
     public void ShowEKeyUI(bool _isPlayerClose)
     {
         Canvas pressE_UI = _playerController.CurrentTarget?.transform.GetChild(0).GetComponent<Canvas>();
-        Debug.Log("ShowEKeyUI");
         if (pressE_UI == null) return;
         if (_isPlayerClose == true)
         {
