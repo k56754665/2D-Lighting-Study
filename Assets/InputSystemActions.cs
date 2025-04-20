@@ -269,7 +269,7 @@ public partial class @InputSystemActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""5e10cb55-ae57-451e-a8c3-ddb23a07fe72"",
-                    ""path"": ""<Keyboard>/ctrl"",
+                    ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
