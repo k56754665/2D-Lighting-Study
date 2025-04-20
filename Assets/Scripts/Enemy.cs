@@ -145,7 +145,9 @@ public class Enemy : MonoBehaviour
             return;
         }
 
-        _spriteTransform.rotation = Quaternion.identity;
+        //_spriteTransform.rotation = Quaternion.identity;
+        _spriteTransform.SetPositionAndRotation(_spriteTransform.position, Quaternion.identity);
+
 
         // 적 대사 변경
         enemyDialogue.DialogueTalking(currentState);
