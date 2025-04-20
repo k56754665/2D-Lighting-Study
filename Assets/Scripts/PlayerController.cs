@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
     public int hp;
     public int maxHp;
     float runMultiply = 1;
+    bool _playingDeadAnimation = false;
+    public bool PlayingDeadAnimation => _playingDeadAnimation;
 
     public PlayerState CurrentState { get { return _currentState; } set { _currentState = value; } }
     public Target TargetType { get { return _targetType; } set { _targetType = value; } }
@@ -47,19 +49,25 @@ public class PlayerController : MonoBehaviour
         SavePointManager.Instance.OnLoadEvent += LoadSavePointPlayer;
     }
 
-    private void LateUpdate()
-    {
-        // 이동
-        if (_currentState != PlayerState.Interaction)
-        {
-            _playerMove.Move();
-        }
-    }
     void Update()
     {
 
         SetHealth();
 
+        if (hp < 1)
+        {
+            _playingDeadAnimation = true;
+            _playerAnimatorController.PlayAnimation("PlayerDead");
+            return;
+        }
+
+        if (_playingDeadAnimation) return;
+
+        // 이동
+        if (_currentState != PlayerState.Interaction)
+        {
+            _playerMove.Move();
+        }
 
         if (!_gameManager.IsGameOver)
         {
@@ -103,12 +111,6 @@ public class PlayerController : MonoBehaviour
                 _canvas.lowHp_UI.SetActive(false);
             }
 
-            if (hp < 1)
-            {
-                _playerAnimatorController.PlayAnimation("PlayerDead");
-            }
-
-            // TODO : closet에 들어가면 타겟 변경하지 않도록함
             if (_playerInteraction.IsInCloset) return;
 
             if(_target != _lastTarget)
@@ -189,6 +191,7 @@ public class PlayerController : MonoBehaviour
     {
         if (deathParticle != null)
         {
+
             ParticleSystem death = Instantiate(deathParticle, transform.position, Quaternion.identity);
             death.Play();
             Destroy(death.gameObject, 2f);

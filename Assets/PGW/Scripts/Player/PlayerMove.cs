@@ -27,7 +27,7 @@ public class PlayerMove : MonoBehaviour
 
     public void Move()
     {
-        if (_playerController == null || _playerAnimatorController == null) return;
+        if (_playerController == null || _playerController.PlayingDeadAnimation || _playerAnimatorController == null) return;
 
         _moveDir = InputManager.Instance.MoveInput.normalized;
 
