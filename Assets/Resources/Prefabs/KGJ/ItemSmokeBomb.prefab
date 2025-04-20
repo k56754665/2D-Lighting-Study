@@ -147,5 +147,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d46309d93238db54597b0e954d5b0fb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GetYouParticle: {fileID: 5347658223564051670, guid: b6725a848bd655148b52a578116f2497, type: 3}
+  GetYouParticle: {fileID: 5347658223564051670, guid: 5389b238fd9502440846dce26c9a3c1f, type: 3}
   ammoPlusNum: 1

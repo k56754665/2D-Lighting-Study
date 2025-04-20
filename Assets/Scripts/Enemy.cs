@@ -104,8 +104,10 @@ public class Enemy : MonoBehaviour
     Vector3 _soundwavePosition;
 
     public Action OnEnemyGunEvent;
+    public Action OnEnemyHitEvent;
 
     Quaternion _initialRotation;
+    
 
     private void Awake()
     {
@@ -207,8 +209,10 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(Bullet bullet)
     {
         if(bullet.BulletColor != BulletColor.Yellow)
+        {
             Debug.Log("EnemyHit|" + bullet.BulletColor);
-
+            OnEnemyHitEvent?.Invoke();
+        }
         // 적이 순찰중일때는 파란총 -> 스턴, 빨간총 -> 주변살피기
         if (currentState == EnemyState.Patrolling)
         {
@@ -274,7 +278,7 @@ public class Enemy : MonoBehaviour
         if (_color == "Blue")
         {
             hp -= 1;
-            Instantiate(BuleDamagedParticle, _fovTransform.position, _fovTransform.rotation);
+            Instantiate(RedDamagedParticle, _fovTransform.position, _fovTransform.rotation);
         }
         else if (_color == "Red")
         {
