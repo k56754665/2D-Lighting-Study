@@ -52,12 +52,12 @@ public class PlayerFire : MonoBehaviour
         if (vector.y > 0f) // 위로 스크롤
         {
             SwitchGun(1);
-            Debug.Log("Current Gun: " + currentGunType);
+            //Debug.Log("Current Gun: " + currentGunType);
         }
         else if (vector.y < 0f) // 아래로 스크롤
         {
             SwitchGun(-1);
-            Debug.Log("Current Gun: " + currentGunType);
+            //Debug.Log("Current Gun: " + currentGunType);
         }
     }
 

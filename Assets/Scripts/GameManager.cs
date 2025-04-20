@@ -2,7 +2,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
-using NavMeshPlus.Components; // NavMeshPlus용 네임스페이스
 
 public class GameManager : MonoBehaviour
 {
@@ -54,6 +53,7 @@ public class GameManager : MonoBehaviour
 
     void Init()
     {
+        Debug.Log("GameManager Init");
         timeRemaining = startingTime;
         isgameover = false;
         isGameClear = false;
@@ -65,6 +65,7 @@ public class GameManager : MonoBehaviour
             timerText = canvas.timer.GetComponent<TextMeshProUGUI>();
             canvas.gameOver.SetActive(false);
         }
+
         NavMeshManager.Instance.RequestNavMeshUpdate();
     }
 

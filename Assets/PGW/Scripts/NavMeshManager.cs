@@ -1,7 +1,6 @@
 using UnityEngine;
 using NavMeshPlus.Components;
 using System.Collections;
-using UnityEngine.AI;
 
 public class NavMeshManager : MonoBehaviour
 {
@@ -25,7 +24,7 @@ public class NavMeshManager : MonoBehaviour
         // NavMeshSurface가 없으면 씬에서 찾기
         if (navMeshSurface == null)
         {
-            navMeshSurface = FindObjectOfType<NavMeshSurface>();
+            navMeshSurface = FindAnyObjectByType<NavMeshSurface>();
             if (navMeshSurface == null)
             {
                 Debug.LogError("NavMeshSurface가 씬에 없습니다!");
@@ -37,6 +36,7 @@ public class NavMeshManager : MonoBehaviour
     {
         if (_instance != null && _instance.navMeshSurface != null)
         {
+            Debug.Log("not null");
             _instance.StartCoroutine(_instance.UpdateNavMeshDelayed());
         }
     }
