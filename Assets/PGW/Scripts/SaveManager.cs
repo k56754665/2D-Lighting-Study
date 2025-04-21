@@ -22,14 +22,6 @@ public class SaveManager : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            ResetSave();
-        }
-    }
-
     public void SaveGame(int savePointIndex, Vector3 position)
     {
         PlayerPrefs.SetInt(SAVE_POINT_INDEX_KEY, savePointIndex);

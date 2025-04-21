@@ -1,15 +1,19 @@
 using UnityEngine;
+using System;
 
 public class Poro : MonoBehaviour
 {
     PoroDialog _poroDialog;
     int hp = 4;
     GameObject _blood;
+    public Action<int> OnPoroHitEvent;
+    UI_KillEnding _killEndingUI;
 
     void Start()
     {
         _poroDialog = transform.GetChild(0).GetComponent<PoroDialog>();
         _blood = Resources.Load<GameObject>("Prefabs/KGJ/Blood");
+        _killEndingUI = FindAnyObjectByType<UI_KillEnding>();
     }
 
     public void TakeDamage()
@@ -20,9 +24,11 @@ public class Poro : MonoBehaviour
 
         _poroDialog.Shoot();
         hp--;
+        OnPoroHitEvent?.Invoke(hp);
         if (hp <= 0)
         {
-            // TODO : 엔딩 씬 켜기
+            // TODO : 디버그 로그 양식에 맞게 수정 필요
+            _killEndingUI.TurnOn();
             Debug.Log("Kill Ending");
             Destroy(gameObject);
         }

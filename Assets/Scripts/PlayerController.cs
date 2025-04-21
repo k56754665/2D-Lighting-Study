@@ -1,7 +1,6 @@
 using UnityEngine;
 using Define;
 using System;
-using UnityEngine.Rendering;
 
 public class PlayerController : MonoBehaviour
 {
