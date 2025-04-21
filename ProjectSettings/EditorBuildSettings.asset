@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/KYR/Scenes/Guide.unity
     guid: 8627184cab658644baa5466c82f22ae7
   - enabled: 1
-    path: Assets/Scenes/Build/Build.unity
+    path: Assets/Scenes/Build/BuildA.unity
     guid: 7f740732ae1073c47886063a73ce909f
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

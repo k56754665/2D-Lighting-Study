@@ -189,7 +189,7 @@ public class PoroDialog : MonoBehaviour
         // TODO : 디버그 로그 양식에 맞게 수정 필요
         _playerFire.CanFire = false;
         _saveEndingUI.TurnOn();
-        Debug.Log("Save Ending");
+        Debug.Log("Ending|Save");
         _coroutine = null;
     }
 }

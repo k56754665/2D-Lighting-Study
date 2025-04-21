@@ -9,7 +9,7 @@ public class MenuButton : MonoBehaviour
     public void GameStart()
     {
         // 버튼 클릭 시, 게임 씬으로 전환
-        SceneManager.LoadScene("Build");
+        SceneManager.LoadScene("BuildA");
     }
 
     public void GoToGuide()

@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name == "Build")
+        if (scene.name == "BuildA")
         {
             Init();
         }

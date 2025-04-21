@@ -14,12 +14,14 @@ public class Bullet : MonoBehaviour
 
     GameObject soundwave;
     Rigidbody2D rb;
+    PlayerController _playerController;
 
     private void Start()
     {
         soundwave = Resources.Load<GameObject>("Prefabs/Soundwaves/SoundwaveWalk");
         rb = GetComponent<Rigidbody2D>();
         previousPosition = transform.position;
+        _playerController = GameObject.FindFirstObjectByType<PlayerController>();
     }
 
     void FixedUpdate()
@@ -76,7 +78,8 @@ public class Bullet : MonoBehaviour
     {
         if (collision.CompareTag("Field Of View Object"))
         {
-            Instantiate(soundwave, transform.position, Quaternion.identity);
+            if(_playerController.PlayerType == 0)
+                Instantiate(soundwave, transform.position, Quaternion.identity);
             //Debug.Log("Hit Wall");
             Destroy(gameObject);
         }

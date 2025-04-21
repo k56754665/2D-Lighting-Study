@@ -27,7 +27,7 @@ public class Poro : MonoBehaviour
         {
             // TODO : 디버그 로그 양식에 맞게 수정 필요
             _killEndingUI.TurnOn();
-            Debug.Log("Kill Ending");
+            Debug.Log("Ending|Kill");
             _animator.Play("PoroDie");
             Destroy(transform.GetChild(0).gameObject);
         }

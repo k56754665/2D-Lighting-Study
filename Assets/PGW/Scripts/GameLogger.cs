@@ -6,7 +6,9 @@ using System.Collections.Generic;
 public class GameLogger : MonoBehaviour
 {
     public static GameLogger Instance { get; private set; }
-    private string logFilePath; private bool isHeaderWritten; private const string AUDIO_LISTENER_MESSAGE = "There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene";
+    private string logFilePath;
+    private bool isHeaderWritten;
+    private const string AUDIO_LISTENER_MESSAGE = "There are no audio listeners in the scene. Please ensure there is always one audio listener in the scene";
 
     private void Awake()
     {
@@ -18,7 +20,9 @@ public class GameLogger : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
-        string logDir = Path.Combine(Application.persistentDataPath, "log");
+        // 빌드 위치에 로그 폴더 생성
+        string logDir = Path.GetDirectoryName(Application.dataPath); // 실행 파일이 있는 폴더
+        logDir = Path.Combine(logDir, "Logs"); // Logs 폴더 추가
         Directory.CreateDirectory(logDir);
         logFilePath = Path.Combine(logDir, $"GameLog_{DateTime.Now:yyyy-MM-dd_HH-mm-ss}.csv");
 
@@ -119,5 +123,4 @@ public class GameLogger : MonoBehaviour
     {
         Application.logMessageReceived -= HandleUnityLog;
     }
-
 }

@@ -19,6 +19,9 @@ public class PlayerController : MonoBehaviour
     PlayerAnimatorController _playerAnimatorController;
     PlayerSound _playerSound;
 
+    [SerializeField] float _playerType = 0; // 0: A테스트   , 1: B테스트
+    public float PlayerType => _playerType; // 플레이어 타입
+
     public int hp;
     public int maxHp;
     float runMultiply = 1;
