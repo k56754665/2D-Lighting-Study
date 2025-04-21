@@ -282,7 +282,7 @@ public class Enemy : MonoBehaviour
         }
         else if (_color == "Red")
         {
-            hp -= 4;
+            hp -= 7;
             Instantiate(RedDamagedParticle, _fovTransform.position, _fovTransform.rotation);
         }
     }
